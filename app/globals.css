@@ -1,21 +1,25 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Theme tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --background: #faf8fc;
+  --foreground: #3f3552;
+  --muted: #6b5f7a;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --lavender: #b9a6d5;
+  --peach: #f6c1b0;
+  --mint: #bfe3d0;
+  --sky: #c6dbf7;
+  --butter: #f7e6a2;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1e1b29;
+    --foreground: #f4f1fb;
+    --muted: #c9c2d8;
   }
 }
 
@@ -23,4 +27,39 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Drifting PNG hearts (real elements) */
+@keyframes fall {
+  0% {
+    transform: translate3d(var(--x-start), -15vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--opacity);
+  }
+  100% {
+    transform: translate3d(var(--x-end), 115vh, 0) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.petal-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--size);
+  height: var(--size);
+  animation: fall var(--dur) linear infinite;
+  animation-delay: var(--delay);
+  will-change: transform;
+  user-select: none;
 }
