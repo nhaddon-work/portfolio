@@ -16,6 +16,9 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: 'Naomi Haddon',
+  icons: {
+    icon: '/kuromi.png',
+  },
   description:
     'Naomi Haddon — Data Engineer, Analytics Engineer, and founder of Adoraboard. Thoughtful systems, cozy design, and creative work.',
 }

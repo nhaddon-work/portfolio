@@ -4,11 +4,9 @@ import React from 'react'
 import Hearts from './components/Hearts'
 import TabButton from './components/TabButton'
 import MiniPlayer from './components/MiniPlayer'
-
 import dynamic from 'next/dynamic'
 
 const TravelGlobe = dynamic(() => import('./components/TravelGlobe'), { ssr: false })
-
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
@@ -53,7 +51,7 @@ const STAR_TILE =
 export default function Home() {
   return (
     <>
-      {/* hearts */}
+      {/* floating hearts */}
       <div className="pointer-events-none fixed inset-0 z-[9999]">
         <Hearts src="/heart.png" count={30} />
       </div>
@@ -71,40 +69,63 @@ export default function Home() {
           }}
         />
 
-        {/* CENTERED COLUMN — 70% WIDTH, LEFT-ALIGNED TEXT */}
+        {/* CONTENT COLUMN */}
         <div className="relative z-10 mx-auto w-[70%] max-w-6xl space-y-8 text-left">
           {/* HERO */}
           <section className="space-y-6">
-            <h1 className="text-5xl font-serif tracking-tight">
-            𝐍𝐚𝐨𝐦𝐢 (𝐘𝐮) 𝐇𝐚𝐝𝐝𝐨𝐧 (𝐃𝐮)
-            </h1>
+            {/* name + image (image on RIGHT) */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="space-y-1">
+                <h1 className="text-5xl font-serif tracking-tight">
+                  𝐍𝐚𝐨𝐦𝐢 (𝐘𝐮) 𝐇𝐚𝐝𝐝𝐨𝐧 (𝐃𝐮)
+                </h1>
 
-            <p className="max-w-3xl">
-              {'𝐈𝐍𝐓𝐉 ｜ ≈ 𝐚𝐪𝐮𝐚𝐫𝐢𝐮𝐬 · ☽ 𝐥𝐢𝐛𝐫𝐚 · ⌒ 𝐥𝐢𝐛𝐫𝐚 ｜ 🇨🇳🇺🇸 ｜ 𝐈𝐧𝐬𝐭𝐚 ✦ 𝐍𝐚𝐨𝐦𝐢𝐰𝐡𝐨𝐦𝐞'}
-            </p>
+                <p className="max-w-3xl text-sm text-muted">
+                  {'𝐈𝐍𝐓𝐉 ｜ ≈ 𝐚𝐪𝐮𝐚𝐫𝐢𝐮𝐬 · ☽ 𝐥𝐢𝐛𝐫𝐚 · ⌒ 𝐥𝐢𝐛𝐫𝐚 ｜ 🇨🇳🇺🇸 ｜ 𝐈𝐧𝐬𝐭𝐚 ✦ 𝐍𝐚𝐨𝐦𝐢𝐰𝐡𝐨𝐦𝐞'}
+                </p>
+              </div>
+
+              <img
+                src="/avatar.png"
+                alt="Naomi"
+                className="w-12 h-12 sm:w-20 sm:h-20 rounded-full object-cover border border-white/60 shadow-sm -mt-1"
+                draggable={false}
+              />
+            </div>
 
             <div className="grid md:grid-cols-3 gap-5 pt-3">
-              <TabButton href="/data" label="Data Engineering & Web Dev" subtitle="Work, skills, projects" accentDot="bg-mint" />
-              <TabButton href="/adoraboard" label="Adoraboard" subtitle="My keyboard brand" accentDot="bg-peach" />
-              <TabButton href="/hobbies" label="Life & Hobbies" subtitle="Singing, guitar, hiking" accentDot="bg-butter" />
+              <TabButton
+                href="/data"
+                label="Data Engineering & Web Dev"
+                subtitle="Work, skills, projects"
+                accentDot="bg-mint"
+              />
+              <TabButton
+                href="/adoraboard"
+                label="Adoraboard"
+                subtitle="My keyboard brand"
+                accentDot="bg-peach"
+              />
+              <TabButton
+                href="/hobbies"
+                label="Life & Hobbies"
+                subtitle="Singing, guitar, hiking"
+                accentDot="bg-butter"
+              />
             </div>
 
             <MiniPlayer />
             <TravelGlobe />
-
-
           </section>
 
-         {/* THINGS I LOVE */}
+          {/* THINGS I LOVE */}
           <section className="space-y-6">
-            <div className="space-y-2">
-              <h2 className="text-xl font-serif tracking-tight">Things I love ✦</h2>
-            </div>
+            <h2 className="text-xl font-serif tracking-tight">Things I love ✦</h2>
 
             <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6">
               <ul className="space-y-4 text-sm leading-relaxed">
                 <li className="flex gap-3">
-                  <span className="mt-[3px] text-xs select-none">✦</span>
+                  <span className="mt-[3px] text-xs">✦</span>
                   <div>
                     <span className="font-medium">Music</span>
                     <span className="text-muted">
@@ -114,47 +135,41 @@ export default function Home() {
                 </li>
 
                 <li className="flex gap-3">
-                  <span className="mt-[3px] text-xs select-none">✦</span>
+                  <span className="mt-[3px] text-xs">✦</span>
                   <div>
                     <span className="font-medium">Fashion</span>
                     <span className="text-muted">
-                      {
-                        ' — I might not have the time to dress it but the interest has always been there — wanted to be a jewelry designer.'
-                      }
+                      {' — Always cared about it; once dreamed of becoming a jewelry designer.'}
                     </span>
                   </div>
                 </li>
 
                 <li className="flex gap-3">
-                  <span className="mt-[3px] text-xs select-none">✦</span>
+                  <span className="mt-[3px] text-xs">✦</span>
                   <div>
                     <span className="font-medium">Movies & TV</span>
                     <span className="text-muted">
-                      {' — Silicon Valley, Two Broke Girls, The Big Bang Theory, Friends — anything funny, romantic and warm.'}
+                      {' — Silicon Valley, Two Broke Girls, The Big Bang Theory, Friends.'}
                     </span>
                   </div>
                 </li>
 
                 <li className="flex gap-3">
-                  <span className="mt-[3px] text-xs select-none">✦</span>
+                  <span className="mt-[3px] text-xs">✦</span>
                   <div>
                     <span className="font-medium">Food & drinks</span>
                     <span className="text-muted">
-                      {
-                        ' — matcha lattes, hot pot, rice noodles, BBQ, and spicy/street food from all over the world — like Tteok-bokki and Vindaloo.'
-                      }
+                      {' — matcha lattes, hot pot, rice noodles, BBQ, spicy street food everywhere.'}
                     </span>
                   </div>
                 </li>
 
                 <li className="flex gap-3">
-                  <span className="mt-[3px] text-xs select-none">✦</span>
+                  <span className="mt-[3px] text-xs">✦</span>
                   <div>
                     <span className="font-medium">Outdoors</span>
                     <span className="text-muted">
-                      {
-                        ' — quiet hikes, mountain air, trees, waterfalls, beaches and lakes — just chiliing anywhere in nature'
-                      }
+                      {' — quiet hikes, trees, waterfalls, beaches, lakes, slow walks.'}
                     </span>
                   </div>
                 </li>
