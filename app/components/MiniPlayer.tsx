@@ -31,7 +31,7 @@ export default function MiniPlayer() {
         <iframe
           width="100%"
           height="110"
-          src="https://www.youtube.com/embed/a4O-abCXsfA?modestbranding=1&rel=0&playsinline=1"
+          src="https://www.youtube.com/embed/BY_XwvKogC8?si=CedTi5NLR0oNFEWjmodestbranding=1&rel=0&playsinline=1"
           title="Timeless — The Weeknd"
           frameBorder="0"
           allow="autoplay; encrypted-media; picture-in-picture"
