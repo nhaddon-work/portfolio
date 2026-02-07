@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Hearts from '../components/Hearts'
+import MiniPlayer from './components/MiniPlayer'
 import Link from 'next/link'
 
 type SkillItem = { skill: string; pill: string; dot: string }
@@ -10,15 +11,16 @@ const dataSkills: SkillItem[] = [
   { skill: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
   { skill: 'SQL', pill: 'bg-sky/30', dot: 'bg-sky' },
   { skill: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
-  { skill: 'dbt', pill: 'bg-peach/35', dot: 'bg-peach' },
+  { skill: 'dbt Core', pill: 'bg-peach/35', dot: 'bg-peach' },
   { skill: 'Airflow', pill: 'bg-butter/45', dot: 'bg-butter' },
-  { skill: 'AWS (S3, Glue, Lambda)', pill: 'bg-sky/30', dot: 'bg-sky' },
+  { skill: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
   { skill: 'Data Modeling', pill: 'bg-mint/35', dot: 'bg-mint' },
   { skill: 'CI/CD', pill: 'bg-butter/45', dot: 'bg-butter' },
   { skill: 'Docker', pill: 'bg-peach/35', dot: 'bg-peach' },
   { skill: 'Tableau', pill: 'bg-mint/35', dot: 'bg-mint' },
   { skill: 'Git', pill: 'bg-sky/30', dot: 'bg-sky' },
   { skill: 'dltHub', pill: 'bg-lavender/30', dot: 'bg-lavender' },
+  { skill: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
 ] as const
 
 function InfoCard({
@@ -63,9 +65,7 @@ export default function DataPage() {
             trust without constant intervention.
           </p>
 
-          <p className="text-[11px] text-muted/60 pt-1">
-            For HR/legal paperwork only: legal name <span className="text-muted/80">Yu Du</span> (I go by Naomi Haddon).
-          </p>
+          <MiniPlayer />
         </header>
 
         <section className="max-w-6xl mx-auto space-y-10">
