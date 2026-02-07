@@ -11,6 +11,10 @@ type TripInfo = {
   highlight?: string
 }
 
+type TravelGlobeProps = {
+  onCountryClick?: (code: string) => void // ✅ Add this
+}
+
 const visited: Record<string, TripInfo> = {
   China: {
     title: 'China ✦',
@@ -65,20 +69,15 @@ const markers: Marker[] = [
 ]
 
 const PHOTOS_BY_COUNTRY: Record<string, CarouselItem[]> = {
-  China: [
-    { src: '/china-01.jpg' },
-    { src: '/china-02.jpg' },
-  ],
-  'United States of America': [
-    { src: '/US-01.png' },
-    { src: '/US-02.jpg' },
-  ],
+  China: [{ src: '/china-01.jpg' }, { src: '/china-02.jpg' }],
+  'United States of America': [{ src: '/US-01.png' }, { src: '/US-02.jpg' }],
   Canada: [{ src: '/CA-01.jpg' }],
   Australia: [{ src: '/AU.jpg' }],
   Japan: [{ src: '/JA.jpg' }],
   'South Korea': [{ src: '/KO.jpg' }],
 }
 
+// Hook for size detection
 function useElementSize<T extends HTMLElement>() {
   const ref = React.useRef<T | null>(null)
   const [size, setSize] = React.useState({ width: 0, height: 0 })
@@ -86,23 +85,20 @@ function useElementSize<T extends HTMLElement>() {
   React.useLayoutEffect(() => {
     if (!ref.current) return
     const el = ref.current
-
     const ro = new ResizeObserver(() => {
       const r = el.getBoundingClientRect()
       setSize({ width: Math.round(r.width), height: Math.round(r.height) })
     })
-
     ro.observe(el)
     const r = el.getBoundingClientRect()
     setSize({ width: Math.round(r.width), height: Math.round(r.height) })
-
     return () => ro.disconnect()
   }, [])
 
   return { ref, size }
 }
 
-export default function TravelGlobe() {
+export default function TravelGlobe({ onCountryClick }: TravelGlobeProps) {
   const globeRef = React.useRef<any>(null)
   const [countries, setCountries] = React.useState<any[]>([])
   const [selected, setSelected] = React.useState<{ name: string; info?: TripInfo } | null>(null)
@@ -126,12 +122,16 @@ export default function TravelGlobe() {
   const getCountryName = (d: any) =>
     d?.properties?.name || d?.properties?.NAME || d?.properties?.ADMIN || d?.properties?.NAME_EN || 'Country'
 
-  // ✅ FIX: always pass an array to Carousel
   const selectedPhotos = selected?.name ? PHOTOS_BY_COUNTRY[selected.name] || [] : []
+
+  const handleSelect = (country: string) => {
+    setSelected({ name: country, info: visited[country] })
+    onCountryClick?.(country) // ✅ trigger callback for main page
+  }
 
   return (
     <div className="grid lg:grid-cols-[1.4fr_1fr] gap-4">
-      {/* globe */}
+      {/* Globe */}
       <div className="bg-white/70 border border-lavender/20 rounded-2xl overflow-hidden">
         <div className="p-4 border-b border-lavender/20">
           <div className="text-sm font-medium">Places I’ve been ✦</div>
@@ -156,10 +156,7 @@ export default function TravelGlobe() {
               polygonStrokeColor={(d: any) =>
                 visited[getCountryName(d)] ? 'rgba(0,0,0,0.75)' : 'rgba(0,0,0,0.20)'
               }
-              onPolygonClick={(d: any) => {
-                const name = getCountryName(d)
-                setSelected({ name, info: visited[name] })
-              }}
+              onPolygonClick={(d: any) => handleSelect(getCountryName(d))}
               htmlElementsData={markers}
               htmlLat={(d: any) => d.lat}
               htmlLng={(d: any) => d.lng}
@@ -182,7 +179,7 @@ export default function TravelGlobe() {
 
                 el.appendChild(img)
                 el.onclick = () => {
-                  setSelected({ name: d.country, info: visited[d.country] })
+                  handleSelect(d.country)
                   globeRef.current?.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.6 }, 650)
                 }
 
@@ -193,7 +190,7 @@ export default function TravelGlobe() {
         </div>
       </div>
 
-      {/* info card */}
+      {/* Info card */}
       <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6">
         {!selected ? (
           <div className="text-sm text-muted">Click a logo ✦</div>
