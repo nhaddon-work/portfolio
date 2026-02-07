@@ -3,8 +3,7 @@
 import React from 'react'
 import Globe from 'react-globe.gl'
 import { feature } from 'topojson-client'
-
-/* -------------------- data -------------------- */
+import Carousel, { CarouselItem } from './ui/Carousel'
 
 type TripInfo = {
   title: string
@@ -13,37 +12,40 @@ type TripInfo = {
 }
 
 const visited: Record<string, TripInfo> = {
-    China: {
-      title: 'China ✦',
-      blurb: 'Home roots, comfort food memories, and the start of everything.',
-      highlight: 'Hot pot + street snacks forever.',
-    },
-    Japan: {
-      title: 'Japan ✦',
-      blurb: 'Design inspiration overload. Quiet details everywhere.',
-      highlight: 'Matcha + cozy wandering.',
-    },
-    'United States of America': {
-      title: 'United States ✦',
-      blurb: 'Where I built my adult life — work, trails, and lots of reinvention.',
-      highlight: 'Hikes + building calm systems.',
-    },
-    Canada: {
-      title: 'Canada ✦',
-      blurb: 'Calm cities, kind people, and beautiful natural balance.',
-      highlight: 'Clean air + peaceful pace.',
-    },
-    Australia: {
-      title: 'Australia ✦',
-      blurb: 'Sun, coastline energy, and that far-from-everything feeling.',
-      highlight: 'Beaches + open skies.',
-    },
-    Korea: {
-      title: 'Korea ✦',
-      blurb: 'Food, nightlife, and culture that moves fast and feels alive.',
-      highlight: 'Late nights + spicy comfort food.',
-    },
-  }  
+  China: {
+    title: 'China ✦',
+    blurb:
+      'I grew up in China with my parents and completed all my schools before college there, including high school.',
+    highlight:
+      'The photos are from my time dancing in a Girls’ Generation cover group and participating in a robotics club in high school.',
+  },
+  Japan: {
+    title: 'Japan ✦',
+    blurb: 'First time there felt rushed and hectic, but hubby and I will be back soon to take it all in.',
+    highlight:
+      "Can’t wait to check out the Kuromi stores and maid cafés! And of course, the summer festivals with all the BBQs!",
+  },
+  'United States of America': {
+    title: 'United States ✦',
+    blurb: 'I met the love of my life after graduating from UW (University of Washington), where I majored in Informatics.',
+    highlight: "He’s the main reason I stayed in the States and built a life here ♥︎",
+  },
+  Canada: {
+    title: 'Canada ✦',
+    blurb: 'Only been to Vancouver once by driving, love the food, love the nature and will drive back again!',
+    highlight: 'Husband and I biked around Stanley Park and loved the beach. Such good vibes ✦',
+  },
+  Australia: {
+    title: 'Australia ✦',
+    blurb: 'The first country I visited on my own as a teenager, traveling with my high school robotics team.',
+    highlight: 'The results are a blur, but I’ll never forget dancing at a school party and celebrating friendships with my team',
+  },
+  'South Korea': {
+    title: 'South Korea ✦',
+    blurb: "First graduation trip with my parents; loved the food but didn't have any cute pics! Will go back for more!",
+    highlight: "It's been so long it felt like a dream; the food, the mountains and the beach~",
+  },
+}
 
 type Marker = {
   country: string
@@ -53,24 +55,29 @@ type Marker = {
   size?: number
 }
 
-/* center-ish coordinates per country */
 const markers: Marker[] = [
-    { country: 'China', lat: 35.8617, lng: 104.1954, img: '/landmark.png', size: 20 },
-    { country: 'Japan', lat: 36.2048, lng: 138.2529, img: '/landmark.png', size: 20 },
-    {
-      country: 'United States of America',
-      lat: 39.8283,
-      lng: -98.5795,
-      img: '/landmark.png',
-      size: 20,
-    },
-    { country: 'Canada', lat: 56.1304, lng: -106.3468, img: '/landmark.png', size: 20 },
-    { country: 'Australia', lat: -25.2744, lng: 133.7751, img: '/landmark.png', size: 20 },
-    { country: 'Korea', lat: 35.9078, lng: 127.7669, img: '/landmark.png', size: 20 },
-  ]
-  
+  { country: 'China', lat: 35.8617, lng: 104.1954, img: '/landmark.png', size: 20 },
+  { country: 'Japan', lat: 36.2048, lng: 138.2529, img: '/landmark.png', size: 20 },
+  { country: 'United States of America', lat: 39.8283, lng: -98.5795, img: '/landmark.png', size: 20 },
+  { country: 'Canada', lat: 56.1304, lng: -106.3468, img: '/landmark.png', size: 20 },
+  { country: 'Australia', lat: -25.2744, lng: 133.7751, img: '/landmark.png', size: 20 },
+  { country: 'South Korea', lat: 35.9078, lng: 127.7669, img: '/landmark.png', size: 20 },
+]
 
-/* -------------------- helpers -------------------- */
+const PHOTOS_BY_COUNTRY: Record<string, CarouselItem[]> = {
+  China: [
+    { src: '/china-01.jpg' },
+    { src: '/china-02.jpg' },
+  ],
+  'United States of America': [
+    { src: '/US-01.png' },
+    { src: '/US-02.jpg' },
+  ],
+  Canada: [{ src: '/CA-01.jpg' }],
+  Australia: [{ src: '/AU.jpg' }],
+  Japan: [{ src: '/JA.jpg' }],
+  'South Korea': [{ src: '/KO.jpg' }],
+}
 
 function useElementSize<T extends HTMLElement>() {
   const ref = React.useRef<T | null>(null)
@@ -86,7 +93,6 @@ function useElementSize<T extends HTMLElement>() {
     })
 
     ro.observe(el)
-
     const r = el.getBoundingClientRect()
     setSize({ width: Math.round(r.width), height: Math.round(r.height) })
 
@@ -96,15 +102,10 @@ function useElementSize<T extends HTMLElement>() {
   return { ref, size }
 }
 
-/* -------------------- component -------------------- */
-
 export default function TravelGlobe() {
   const globeRef = React.useRef<any>(null)
   const [countries, setCountries] = React.useState<any[]>([])
-  const [selected, setSelected] = React.useState<{
-    name: string
-    info?: TripInfo
-  } | null>(null)
+  const [selected, setSelected] = React.useState<{ name: string; info?: TripInfo } | null>(null)
 
   const { ref: wrapRef, size } = useElementSize<HTMLDivElement>()
 
@@ -123,15 +124,14 @@ export default function TravelGlobe() {
   }, [countries.length])
 
   const getCountryName = (d: any) =>
-    d?.properties?.name ||
-    d?.properties?.NAME ||
-    d?.properties?.ADMIN ||
-    d?.properties?.NAME_EN ||
-    'Country'
+    d?.properties?.name || d?.properties?.NAME || d?.properties?.ADMIN || d?.properties?.NAME_EN || 'Country'
+
+  // ✅ FIX: always pass an array to Carousel
+  const selectedPhotos = selected?.name ? PHOTOS_BY_COUNTRY[selected.name] || [] : []
 
   return (
     <div className="grid lg:grid-cols-[1.4fr_1fr] gap-4">
-      {/* ---------- globe ---------- */}
+      {/* globe */}
       <div className="bg-white/70 border border-lavender/20 rounded-2xl overflow-hidden">
         <div className="p-4 border-b border-lavender/20">
           <div className="text-sm font-medium">Places I’ve been ✦</div>
@@ -147,26 +147,19 @@ export default function TravelGlobe() {
               backgroundColor="rgba(0,0,0,0)"
               globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
               bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-
               polygonsData={countries}
               polygonAltitude={0.01}
               polygonCapColor={(d: any) =>
-                visited[getCountryName(d)]
-                  ? 'rgba(0,0,0,0.14)'
-                  : 'rgba(0,0,0,0.05)'
+                visited[getCountryName(d)] ? 'rgba(0,0,0,0.14)' : 'rgba(0,0,0,0.05)'
               }
               polygonSideColor={() => 'rgba(0,0,0,0.05)'}
               polygonStrokeColor={(d: any) =>
-                visited[getCountryName(d)]
-                  ? 'rgba(0,0,0,0.75)'
-                  : 'rgba(0,0,0,0.20)'
+                visited[getCountryName(d)] ? 'rgba(0,0,0,0.75)' : 'rgba(0,0,0,0.20)'
               }
               onPolygonClick={(d: any) => {
                 const name = getCountryName(d)
                 setSelected({ name, info: visited[name] })
               }}
-
-              /* ---------- LOGO MARKERS (NO CIRCLES) ---------- */
               htmlElementsData={markers}
               htmlLat={(d: any) => d.lat}
               htmlLng={(d: any) => d.lng}
@@ -185,17 +178,12 @@ export default function TravelGlobe() {
                 img.style.width = '100%'
                 img.style.height = '100%'
                 img.style.objectFit = 'contain'
-                img.style.userSelect = 'none'
                 img.draggable = false
 
                 el.appendChild(img)
-
                 el.onclick = () => {
                   setSelected({ name: d.country, info: visited[d.country] })
-                  globeRef.current?.pointOfView(
-                    { lat: d.lat, lng: d.lng, altitude: 1.6 },
-                    650
-                  )
+                  globeRef.current?.pointOfView({ lat: d.lat, lng: d.lng, altitude: 1.6 }, 650)
                 }
 
                 return el
@@ -205,27 +193,24 @@ export default function TravelGlobe() {
         </div>
       </div>
 
-      {/* ---------- info card ---------- */}
+      {/* info card */}
       <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6">
         {!selected ? (
           <div className="text-sm text-muted">Click a logo ✦</div>
         ) : selected.info ? (
           <div className="space-y-2">
             <div className="text-lg font-semibold">{selected.info.title}</div>
-            <div className="text-sm text-muted">{selected.name}</div>
             <p className="text-sm leading-relaxed">{selected.info.blurb}</p>
             {selected.info.highlight && (
-              <div className="text-xs text-muted">
-                Highlight: {selected.info.highlight}
-              </div>
+              <div className="text-xs text-muted">Highlight: {selected.info.highlight}</div>
             )}
+
+            {selectedPhotos.length > 0 && <Carousel title="Photos" items={selectedPhotos} />}
           </div>
         ) : (
           <div className="space-y-2">
             <div className="text-lg font-semibold">{selected.name}</div>
-            <p className="text-sm text-muted">
-              Not in your visited list yet ✦
-            </p>
+            <p className="text-sm text-muted">Not in your visited list yet ✦</p>
           </div>
         )}
       </div>
