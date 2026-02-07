@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Hearts from '../components/Hearts'
-import MiniPlayer from './components/MiniPlayer'
+import MiniPlayer from '../components/MiniPlayer'
 import Link from 'next/link'
 
 type SkillItem = { skill: string; pill: string; dot: string }
