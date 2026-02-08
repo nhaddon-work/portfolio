@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Hearts from '../components/Hearts'
+import MiniPlayer from '../components/MiniPlayer'
 import Link from 'next/link'
 
 type SkillItem = { skill: string; pill: string; dot: string }
@@ -10,15 +11,16 @@ const dataSkills: SkillItem[] = [
   { skill: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
   { skill: 'SQL', pill: 'bg-sky/30', dot: 'bg-sky' },
   { skill: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
-  { skill: 'dbt', pill: 'bg-peach/35', dot: 'bg-peach' },
+  { skill: 'dbt Core', pill: 'bg-peach/35', dot: 'bg-peach' },
   { skill: 'Airflow', pill: 'bg-butter/45', dot: 'bg-butter' },
-  { skill: 'AWS (S3, Glue, Lambda)', pill: 'bg-sky/30', dot: 'bg-sky' },
+  { skill: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
   { skill: 'Data Modeling', pill: 'bg-mint/35', dot: 'bg-mint' },
   { skill: 'CI/CD', pill: 'bg-butter/45', dot: 'bg-butter' },
   { skill: 'Docker', pill: 'bg-peach/35', dot: 'bg-peach' },
   { skill: 'Tableau', pill: 'bg-mint/35', dot: 'bg-mint' },
   { skill: 'Git', pill: 'bg-sky/30', dot: 'bg-sky' },
   { skill: 'dltHub', pill: 'bg-lavender/30', dot: 'bg-lavender' },
+  { skill: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
 ] as const
 
 function InfoCard({
@@ -63,74 +65,10 @@ export default function DataPage() {
             trust without constant intervention.
           </p>
 
-          <p className="text-[11px] text-muted/60 pt-1">
-            For HR/legal paperwork only: legal name <span className="text-muted/80">Yu Du</span> (I go by Naomi Haddon).
-          </p>
+          <MiniPlayer />
         </header>
 
         <section className="max-w-6xl mx-auto space-y-10">
-          {/* How I work */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <InfoCard title="Clarity first" dot="bg-mint">
-              I’m most effective when goals are well-defined and constraints are explicit. I tend to spend time upfront
-              structuring ambiguous problems so the resulting systems are easier to reason about and maintain.
-            </InfoCard>
-
-            <InfoCard title="Durability over novelty" dot="bg-sky">
-              I bias toward solutions that are boring in the best way: stable, understandable, and low-maintenance. I value
-              observability, ownership, and documentation as much as initial delivery.
-            </InfoCard>
-
-            <InfoCard title="Autonomy with accountability" dot="bg-peach">
-              Once direction is aligned, I prefer the space to design and execute thoughtfully. I communicate progress clearly
-              and surface issues early rather than relying on reactive fixes.
-            </InfoCard>
-          </div>
-
-          {/* Strengths + growth edges */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-lavender" />
-                <h2 className="text-lg font-semibold">What I bring</h2>
-              </div>
-              <ul className="text-sm text-muted leading-relaxed list-disc pl-5 space-y-2">
-                <li>Strong systems thinking across the data stack, from ingestion to analytics consumption.</li>
-                <li>Ability to synthesize vague or unspoken stakeholder needs into concrete, usable models.</li>
-                <li>A calm, steady working style that prioritizes quality and sustainability over speed theatrics.</li>
-                <li>Clear, structured communication and a bias toward shared understanding.</li>
-              </ul>
-            </div>
-
-            <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-butter" />
-                <h2 className="text-lg font-semibold">Areas I’m continuing to develop</h2>
-              </div>
-              <ul className="text-sm text-muted leading-relaxed list-disc pl-5 space-y-2">
-                <li>Navigating highly performative or politically complex environments with greater efficiency.</li>
-                <li>Managing upward while preserving focus and boundaries.</li>
-                <li>Maintaining strategic distance from short-term noise and constant firefighting.</li>
-              </ul>
-              <p className="text-xs text-muted/80">
-                I approach these as skills to refine rather than traits to suppress — long-term effectiveness matters more than
-                short-term optics.
-              </p>
-            </div>
-          </div>
-
-          {/* When I’m at my best */}
-          <div className="bg-white/60 border border-lavender/20 rounded-2xl p-6">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-butter" />
-              <h2 className="text-lg font-semibold">When I’m at my best</h2>
-            </div>
-            <p className="text-sm text-muted leading-relaxed mt-2 max-w-4xl">
-              I’m at my best when I’m trusted to manage my own time and approach, aligned to meaningful outcomes rather than
-              rigid processes. In those conditions, I consistently build systems that are intuitive to use, quietly reliable,
-              and valuable over the long term.
-            </p>
-          </div>
 
           {/* Skills */}
           <div className="space-y-4">
@@ -159,18 +97,23 @@ export default function DataPage() {
               {[
                 {
                   title: 'Modern Analytics Stack',
-                  desc: 'dbt + Snowflake models with quality checks and clean semantic layers.',
+                  desc: 'dbt snapshots and complex business logic models tracking dimensions and slowly changing data across Snowflake.',
                   tags: ['dbt', 'SQL', 'Snowflake'],
+                  link: 'https://github.com/nhaddon-work/pipelines/tree/main/schema-sidetrade/core/dbt_project',
                 },
                 {
                   title: 'Reliable Pipelines',
-                  desc: 'Orchestrated ELT with retries, observability, and stakeholder-friendly docs.',
+                  desc: 'ELT orchestration handling diverse data sources with complex custom scripting and robust error handling.',
                   tags: ['Airflow', 'Python', 'AWS'],
+                  link: 'https://github.com/nhaddon-work/pipelines',
                 },
               ].map((p) => (
-                <div
+                <a
                   key={p.title}
-                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md transition"
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-lavender/40 transition block"
                 >
                   <h3 className="text-lg font-semibold">{p.title}</h3>
                   <p className="text-sm text-muted">{p.desc}</p>
@@ -181,7 +124,7 @@ export default function DataPage() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
