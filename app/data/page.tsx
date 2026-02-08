@@ -97,18 +97,23 @@ export default function DataPage() {
               {[
                 {
                   title: 'Modern Analytics Stack',
-                  desc: 'dbt + Snowflake models with quality checks and clean semantic layers.',
+                  desc: 'dbt snapshots and complex business logic models tracking dimensions and slowly changing data across Snowflake.',
                   tags: ['dbt', 'SQL', 'Snowflake'],
+                  link: 'https://github.com/nhaddon-work/pipelines/tree/main/schema-sidetrade/core/dbt_project',
                 },
                 {
                   title: 'Reliable Pipelines',
-                  desc: 'Orchestrated ELT with retries, observability, and stakeholder-friendly docs.',
+                  desc: 'ELT orchestration handling diverse data sources with complex custom scripting and robust error handling.',
                   tags: ['Airflow', 'Python', 'AWS'],
+                  link: 'https://github.com/nhaddon-work/pipelines',
                 },
               ].map((p) => (
-                <div
+                <a
                   key={p.title}
-                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md transition"
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-lavender/40 transition block"
                 >
                   <h3 className="text-lg font-semibold">{p.title}</h3>
                   <p className="text-sm text-muted">{p.desc}</p>
@@ -119,7 +124,7 @@ export default function DataPage() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
