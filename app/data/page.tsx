@@ -1,113 +1,179 @@
 'use client'
 
 import React from 'react'
-import Hearts from '../components/Hearts'
-import MiniPlayer from '../components/MiniPlayer'
 import Link from 'next/link'
 
-type SkillItem = { skill: string; pill: string; dot: string }
+type TechPill = { label: string; pill: string; dot: string }
 
-const dataSkills: SkillItem[] = [
-  { skill: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
-  { skill: 'SQL', pill: 'bg-sky/30', dot: 'bg-sky' },
-  { skill: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
-  { skill: 'dbt Core', pill: 'bg-peach/35', dot: 'bg-peach' },
-  { skill: 'Airflow', pill: 'bg-butter/45', dot: 'bg-butter' },
-  { skill: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
-  { skill: 'Data Modeling', pill: 'bg-mint/35', dot: 'bg-mint' },
-  { skill: 'CI/CD', pill: 'bg-butter/45', dot: 'bg-butter' },
-  { skill: 'Docker', pill: 'bg-peach/35', dot: 'bg-peach' },
-  { skill: 'Tableau', pill: 'bg-mint/35', dot: 'bg-mint' },
-  { skill: 'Git', pill: 'bg-sky/30', dot: 'bg-sky' },
-  { skill: 'dltHub', pill: 'bg-lavender/30', dot: 'bg-lavender' },
-  { skill: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
-] as const
-
-function InfoCard({
-  title,
-  dot,
-  children,
-}: {
-  title: string
-  dot: string
-  children: React.ReactNode
-}) {
-  return (
-    <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-2">
-      <div className="flex items-center gap-2">
-        <span className={`w-2.5 h-2.5 rounded-full ${dot}`} />
-        <h2 className="text-lg font-semibold">{title}</h2>
-      </div>
-      <div className="text-sm text-muted leading-relaxed">{children}</div>
-    </div>
-  )
+type ExperienceItem = {
+  company: string
+  role: string
+  start: string
+  end: string
+  location?: string
+  highlights: string[]
+  tech: TechPill[]
 }
+
+const experience: ExperienceItem[] = [
+  {
+    company: 'dbt Labs',
+    role: 'Data Engineer',
+    start: '2024',
+    end: 'Present',
+    location: 'Remote',
+    highlights: [
+      'Built scalable ELT pipelines using Python and modern ingestion tools to improve reliability and reduce manual effort.',
+      'Designed modular, reusable data models in dbt to support consistent analytics across teams.',
+      'Improved data quality through testing, alerts, and pipeline audits, increasing trust in analytics outputs.',
+      'Partnered with stakeholders to translate business questions into durable, analytics-ready datasets.',
+    ],
+    tech: [
+      { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
+      { label: 'dbt', pill: 'bg-peach/35', dot: 'bg-peach' },
+      { label: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
+    ],
+  },
+  {
+    company: 'PitchBook',
+    role: 'Data Engineer',
+    start: '2024',
+    end: '2024',
+    location: 'Seattle, WA',
+    highlights: [
+      'Built scalable ETL/ELT pipelines with Python, Meltano, and dltHub, eliminating manual workflows.',
+      'Designed modular data models with dbt and SQLMesh to improve reuse and consistency.',
+      'Managed Snowflake resources and roles via Terraform, standardizing infrastructure-as-code.',
+      'Deployed CI/CD pipelines using Docker, GitLab, Airflow, and DataHub for reliable releases.',
+      'Redesigned Snowflake database architecture to enable intuitive self-serve analytics.',
+    ],
+    tech: [
+      { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
+      { label: 'dbt', pill: 'bg-peach/35', dot: 'bg-peach' },
+      { label: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
+      { label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
+      { label: 'Airflow', pill: 'bg-butter/45', dot: 'bg-butter' },
+      { label: 'Docker', pill: 'bg-peach/35', dot: 'bg-peach' },
+    ],
+  },
+  {
+    company: 'Amazon',
+    role: 'Business Intelligence Engineer',
+    start: '2021',
+    end: '2023',
+    location: 'Seattle, WA',
+    highlights: [
+      'Built and maintained 20+ ETL pipelines to transform large datasets for analytics use cases.',
+      'Created standardized metric tables in SQL to reduce redundancy and metric churn.',
+      'Designed dashboards in QuickSight and Tableau to track KPIs across multiple orgs.',
+      'Conducted A/B tests to inform senior leadership decisions and product launches.',
+    ],
+    tech: [
+      { label: 'SQL', pill: 'bg-sky/30', dot: 'bg-sky' },
+      { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
+      { label: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
+      { label: 'Tableau', pill: 'bg-mint/35', dot: 'bg-mint' },
+    ],
+  },
+  {
+    company: 'Recon Dynamics',
+    role: 'Data Engineer',
+    start: '2020',
+    end: '2021',
+    location: 'Seattle, WA',
+    highlights: [
+      'Developed R Shiny applications to visualize real-time vehicle usage for operational insights.',
+      'Built ETL pipelines using Python and AWS services to support analytics reporting.',
+      'Reduced execution time by 30% through testing and refactoring.',
+    ],
+    tech: [
+      { label: 'R', pill: 'bg-lavender/30', dot: 'bg-lavender' },
+      { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
+      { label: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
+    ],
+  },
+]
+
+const githubProjects = [
+  {
+    title: 'Modern Analytics Stack',
+    desc: 'dbt snapshots and complex business logic models tracking dimensions and slowly changing data across Snowflake.',
+    tags: ['dbt', 'SQL', 'Snowflake'],
+    link: 'https://github.com/nhaddon-work/pipelines/tree/main/schema-sidetrade/core/dbt_project',
+  },
+  {
+    title: 'Reliable Pipelines',
+    desc: 'ELT orchestration handling diverse data sources with complex custom scripting and robust error handling.',
+    tags: ['Airflow', 'Python', 'AWS'],
+    link: 'https://github.com/nhaddon-work/pipelines',
+  },
+] as const
 
 export default function DataPage() {
   return (
-    <>
-      {/* FORCE hearts to sit above everything on this page */}
-      <div className="pointer-events-none fixed inset-0 z-[9999]">
-        <Hearts src="/heart.png" count={26} />
-      </div>
 
-      <main className="relative min-h-screen bg-base text-text px-6 py-16 space-y-12">
-        <header className="max-w-6xl mx-auto space-y-4">
+      <main className="relative min-h-screen bg-base text-text px-6 py-16">
+        <div className="max-w-5xl mx-auto space-y-10">
           <Link href="/" className="text-sm text-muted hover:underline">
             ← Back home
           </Link>
 
-          <h1 className="text-4xl font-serif tracking-tight">Data Engineering</h1>
+          <header className="space-y-2">
+            <h1 className="text-4xl font-serif tracking-tight">Data Engineering</h1>
+            <p className="text-muted max-w-3xl">
+              Data engineer focused on building calm, durable data systems teams can trust.
+            </p>
+          </header>
 
-          <p className="text-muted max-w-3xl">
-            I design and build calm, reliable data systems with a focus on clarity, durability, and long-term usefulness. I
-            care about reducing operational noise, aligning systems to real questions, and creating foundations teams can
-            trust without constant intervention.
-          </p>
+          {/* EXPERIENCE */}
+          <section className="space-y-4">
+            <h2 className="text-xl font-semibold">Experience</h2>
 
-          <MiniPlayer />
-        </header>
-
-        <section className="max-w-6xl mx-auto space-y-10">
-
-          {/* Skills */}
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Skills</h2>
-            <div className="flex flex-wrap gap-3">
-              {dataSkills.map(({ skill, pill, dot }) => (
-                <span
-                  key={skill}
-                  className={`
-                    inline-flex items-center gap-2 px-4 py-1 rounded-full text-sm
-                    ${pill} border border-white/40 hover:shadow-sm hover:scale-[1.02] transition
-                  `}
+            <div className="space-y-4">
+              {experience.map((job) => (
+                <div
+                  key={`${job.company}-${job.role}`}
+                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4"
                 >
-                  <span className={`w-2.5 h-2.5 rounded-full ${dot}`} />
-                  {skill}
-                </span>
+                  <div>
+                    <h3 className="text-lg font-semibold">
+                      {job.role}{' '}
+                      <span className="font-normal text-muted">· {job.company}</span>
+                    </h3>
+                    <p className="text-xs text-muted">
+                      {job.start} — {job.end}
+                      {job.location ? ` · ${job.location}` : ''}
+                    </p>
+                  </div>
+
+                  <ul className="list-disc pl-5 space-y-2 text-sm text-muted">
+                    {job.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2">
+                    {job.tech.map((t) => (
+                      <span
+                        key={t.label}
+                        className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs ${t.pill} border border-white/40`}
+                      >
+                        <span className={`w-2 h-2 rounded-full ${t.dot}`} />
+                        {t.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
+          </section>
 
-          {/* Projects */}
-          <div className="space-y-4">
+          {/* GITHUB PROJECTS */}
+          <section className="space-y-4">
             <h2 className="text-xl font-semibold">GitHub Projects</h2>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: 'Modern Analytics Stack',
-                  desc: 'dbt snapshots and complex business logic models tracking dimensions and slowly changing data across Snowflake.',
-                  tags: ['dbt', 'SQL', 'Snowflake'],
-                  link: 'https://github.com/nhaddon-work/pipelines/tree/main/schema-sidetrade/core/dbt_project',
-                },
-                {
-                  title: 'Reliable Pipelines',
-                  desc: 'ELT orchestration handling diverse data sources with complex custom scripting and robust error handling.',
-                  tags: ['Airflow', 'Python', 'AWS'],
-                  link: 'https://github.com/nhaddon-work/pipelines',
-                },
-              ].map((p) => (
+              {githubProjects.map((p) => (
                 <a
                   key={p.title}
                   href={p.link}
@@ -117,9 +183,18 @@ export default function DataPage() {
                 >
                   <h3 className="text-lg font-semibold">{p.title}</h3>
                   <p className="text-sm text-muted">{p.desc}</p>
+
+                  {/* Visible link */}
+                  <div className="text-xs text-sky underline break-all">
+                    {p.link}
+                  </div>
+
                   <div className="flex flex-wrap gap-2 text-xs">
                     {p.tags.map((t) => (
-                      <span key={t} className="px-2 py-1 rounded-full bg-lavender/25">
+                      <span
+                        key={t}
+                        className="px-2 py-1 rounded-full bg-lavender/25 border border-white/30"
+                      >
                         {t}
                       </span>
                     ))}
@@ -127,12 +202,12 @@ export default function DataPage() {
                 </a>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
 
-        <footer className="text-center text-sm text-muted pt-6">
-          <p>© Naomi Haddon ✦ Built with care</p>
-        </footer>
+          <footer className="text-center text-sm text-muted pt-6">
+            © Naomi Haddon ✦ Built with care
+          </footer>
+        </div>
       </main>
     </>
   )
