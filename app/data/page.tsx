@@ -19,24 +19,22 @@ const experience: ExperienceItem[] = [
   {
     company: 'dbt Labs',
     role: 'Data Engineer',
-    start: '',
-    end: 'Present',
+    start: '2025',
+    end: 'Present ~ Just Started!',
     location: 'Remote',
     highlights: [
-      'Improved data quality through testing, alerts, and pipeline audits, increasing trust in analytics outputs.',
-      'Partnered with stakeholders to translate business questions into durable, analytics-ready datasets.',
+      'Own and drive data observability, building freshness, volume, schema, and quality checks to surface issues early across pipelines.',
+      'Partner with senior engineers on a new Iceberg-based data lake, supporting table setup, pipeline integration, and platform operations.'
     ],
     tech: [
-      { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
       { label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
-      { label: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
     ],
   },
   {
     company: 'PitchBook',
     role: 'Data Engineer',
-    start: '2025',
-    end: '2024 ~ 2 years',
+    start: '2024',
+    end: '2025 ~ 2 years',
     location: 'Seattle, WA',
     highlights: [
       'Built scalable ETL/ELT pipelines with Python, Meltano, and dltHub, eliminating manual workflows.',
@@ -58,7 +56,7 @@ const experience: ExperienceItem[] = [
     company: 'Amazon',
     role: 'Business Intelligence Engineer',
     start: '2021',
-    end: '2023',
+    end: '2023 ~ 2.75 years',
     location: 'Seattle, WA',
     highlights: [
       'Built and maintained 20+ ETL pipelines to transform large datasets for analytics use cases.',
@@ -75,9 +73,9 @@ const experience: ExperienceItem[] = [
   },
   {
     company: 'Recon Dynamics',
-    role: 'Data Engineer',
+    role: 'Data Analyst',
     start: '2020',
-    end: '2021',
+    end: '2021 ~ almost 1 year',
     location: 'Seattle, WA',
     highlights: [
       'Developed R Shiny applications to visualize real-time vehicle usage for operational insights.',
@@ -94,7 +92,6 @@ const experience: ExperienceItem[] = [
 
 const testimonials = [
   {
-    title: "Focus on Focus",
     quote:
       "Naomi has been instrumental in pushing our project Sidetrade data forward, overcoming a series of tough setbacks and helping navigate complex cross-functional and cross-organizational requirements. Her work to secure access to Sidetrade and build out the necessary data tables was no small feat, especially given the intricate logic involved. She consistently sought to clarify requirements and iterated quickly toward the right solution. The quality of her work has been excellent, and collaborating with her has been a true highlight. Huge thanks to Naomi for her persistence, precision, and partnership!",
     author: "Trent Thomas",
@@ -186,10 +183,6 @@ export default function DataPage() {
                   key={i}
                   className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4 hover:shadow-md transition"
                 >
-                  {/* Quote title */}
-                  <h3 className="text-lg font-semibold text-sky">
-                    {t.title}
-                  </h3>
           
                   {/* Quote text */}
                   <p className="text-sm text-muted leading-relaxed">
