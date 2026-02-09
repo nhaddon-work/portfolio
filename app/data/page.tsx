@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import Link from 'next/link'
 
 type TechPill = { label: string; pill: string; dot: string }
@@ -24,11 +23,9 @@ const experience: ExperienceItem[] = [
     location: 'Remote',
     highlights: [
       'Own and drive data observability, building freshness, volume, schema, and quality checks to surface issues early across pipelines.',
-      'Partner with senior engineers on a new Iceberg-based data lake, supporting table setup, pipeline integration, and platform operations.'
+      'Partner with senior engineers on a new Iceberg-based data lake, supporting table setup, pipeline integration, and platform operations.',
     ],
-    tech: [
-      { label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
-    ],
+    tech: [{ label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' }],
   },
   {
     company: 'PitchBook',
@@ -90,12 +87,29 @@ const experience: ExperienceItem[] = [
   },
 ]
 
+const summaryOfQualifications = [
+  'Data-driven problem solver with 3 years of SQL & Python programming experience and aptitude for data visualization',
+  'Analytics professional with aptitude for analytical problem solving and real-word applications of statistical theories',
+  'Collaborative team player with 3-year of customer service experience, strong communication and interpersonal skills',
+  'Proficient: SQL, Python, Tableau, ETL, R, Client/Server Side Development; Intermediate: Jupyter notebook, Git',
+]
+
+const education = {
+  school: 'University of Washington',
+  location: 'Seattle, WA',
+  date: 'June 2020',
+  degree: 'Bachelor of Science in Informatics – Data Science',
+  gpa: '3.8/4.0',
+  coursework:
+    'Data Visualization (Dashboards, D3), Web Development (HTML, CSS, JavaScript), Statistics (Hypothesis Testing, Probability), ETL, Machine Learning (Regression, Tree-based models, NLP), Database Management (Relational Database Development)',
+}
+
 const testimonials = [
   {
     quote:
-      "Naomi has been instrumental in pushing our project Sidetrade data forward, overcoming a series of tough setbacks and helping navigate complex cross-functional and cross-organizational requirements. Her work to secure access to Sidetrade and build out the necessary data tables was no small feat, especially given the intricate logic involved. She consistently sought to clarify requirements and iterated quickly toward the right solution. The quality of her work has been excellent, and collaborating with her has been a true highlight. Huge thanks to Naomi for her persistence, precision, and partnership!",
-    author: "Trent Thomas",
-    role: "Stakeholder / Collaborator", // optional
+      'Naomi has been instrumental in pushing our project Sidetrade data forward, overcoming a series of tough setbacks and helping navigate complex cross-functional and cross-organizational requirements. Her work to secure access to Sidetrade and build out the necessary data tables was no small feat, especially given the intricate logic involved. She consistently sought to clarify requirements and iterated quickly toward the right solution. The quality of her work has been excellent, and collaborating with her has been a true highlight. Huge thanks to Naomi for her persistence, precision, and partnership!',
+    author: 'Trent Thomas',
+    role: 'Stakeholder / Collaborator',
   },
 ]
 
@@ -116,133 +130,156 @@ const githubProjects = [
 
 export default function DataPage() {
   return (
-    <>
-      <main className="relative min-h-screen bg-base text-text px-6 py-16">
-        <div className="max-w-5xl mx-auto space-y-10">
-          <Link href="/" className="text-sm text-muted hover:underline">
-            ← Back home
-          </Link>
-        
-          <header className="space-y-2">
-            <h1 className="text-4xl font-serif tracking-tight">Data Engineering</h1>
-            <p className="text-muted max-w-3xl">
-              Data engineer focused on building calm, durable data systems teams can trust.
-            </p>
-          </header>
+    <main className="relative min-h-screen bg-base text-text px-6 py-16">
+      <div className="max-w-5xl mx-auto space-y-10">
+        <Link href="/" className="text-sm text-muted hover:underline">
+          ← Back home
+        </Link>
 
-          {/* EXPERIENCE */}
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold">Experience</h2>
+        <header className="space-y-2">
+          <h1 className="text-4xl font-serif tracking-tight">Data Engineering</h1>
+        </header>
 
-            <div className="space-y-4">
-              {experience.map((job) => (
-                <div
-                  key={`${job.company}-${job.role}`}
-                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4"
-                >
-                  <div>
-                    <h3 className="text-lg font-semibold">
-                      {job.role}{' '}
-                      <span className="font-normal text-muted">· {job.company}</span>
-                    </h3>
-                    <p className="text-xs text-muted">
-                      {job.start} — {job.end}
-                      {job.location ? ` · ${job.location}` : ''}
-                    </p>
-                  </div>
+        {/* SUMMARY */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Summary of Qualifications</h2>
 
-                  <ul className="list-disc pl-5 space-y-2 text-sm text-muted">
-                    {job.highlights.map((h) => (
-                      <li key={h}>{h}</li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-2">
-                    {job.tech.map((t) => (
-                      <span
-                        key={t.label}
-                        className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs ${t.pill} border border-white/40`}
-                      >
-                        <span className={`w-2 h-2 rounded-full ${t.dot}`} />
-                        {t.label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+          <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4">
+            <ul className="list-disc pl-5 space-y-2 text-sm text-muted">
+              {summaryOfQualifications.map((item) => (
+                <li key={item}>{item}</li>
               ))}
-            </div>
-          </section>
-          
-          {/* TESTIMONIALS */}
-          <section className="space-y-6">
-            <h2 className="text-xl font-semibold">What People Say</h2>
-          
-            <div className="grid gap-6 md:grid-cols-2">
-              {testimonials.map((t, i) => (
-                <blockquote
-                  key={i}
-                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4 hover:shadow-md transition"
-                >
-          
-                  {/* Quote text */}
-                  <p className="text-sm text-muted leading-relaxed">
-                    “{t.quote}”
-                  </p>
-          
-                  {/* Author */}
-                  <footer className="pt-2 text-sm font-medium">
-                    — {t.author}
-                    {t.role && (
-                      <span className="text-muted font-normal">
-                        , {t.role}
-                      </span>
-                    )}
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          </section>
+            </ul>
+          </div>
+        </section>
 
-          {/* GITHUB PROJECTS */}
-          <section className="space-y-4">
-            <h2 className="text-xl font-semibold">GitHub Projects</h2>
-          
-            <div className="grid md:grid-cols-2 gap-6">
-              {githubProjects.map((p) => (
-                <a
-                  key={p.title}
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-lavender/40 transition block"
-                >
-                  {/* Title acts as the visible link */}
-                  <h3 className="text-lg font-semibold underline underline-offset-4 decoration-transparent group-hover:decoration-sky transition">
-                    {p.title}
+        {/* EXPERIENCE */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Experience</h2>
+
+          <div className="space-y-4">
+            {experience.map((job) => (
+              <div
+                key={`${job.company}-${job.role}`}
+                className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4"
+              >
+                <div>
+                  <h3 className="text-lg font-semibold">
+                    {job.role}{' '}
+                    <span className="font-normal text-muted">· {job.company}</span>
                   </h3>
-          
-                  <p className="text-sm text-muted">{p.desc}</p>
-          
-                  <div className="flex flex-wrap gap-2 text-xs">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-1 rounded-full bg-lavender/25 border border-white/30"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </a>
-              ))}
-            </div>
-          </section>
+                  <p className="text-xs text-muted">
+                    {job.start} — {job.end}
+                    {job.location ? ` · ${job.location}` : ''}
+                  </p>
+                </div>
 
-          <footer className="text-center text-sm text-muted pt-6">
-            © Naomi Haddon ✦ Built with care
-          </footer>
-        </div>
-      </main>
-    </>
+                <ul className="list-disc pl-5 space-y-2 text-sm text-muted">
+                  {job.highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2">
+                  {job.tech.map((t) => (
+                    <span
+                      key={t.label}
+                      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs ${t.pill} border border-white/40`}
+                    >
+                      <span className={`w-2 h-2 rounded-full ${t.dot}`} />
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* EDUCATION */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">Education</h2>
+
+          <div className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3">
+            <div className="space-y-1">
+              <h3 className="text-lg font-semibold">
+                {education.school}{' '}
+                <span className="font-normal text-muted">· {education.location}</span>
+              </h3>
+              <p className="text-xs text-muted">{education.date}</p>
+            </div>
+
+            <p className="text-sm text-muted">
+              {education.degree}{' '}
+              <span className="text-muted">(Major GPA: {education.gpa})</span>
+            </p>
+
+            <p className="text-sm text-muted">
+              <span className="font-medium text-text">Coursework:</span> {education.coursework}
+            </p>
+          </div>
+        </section>
+
+        {/* TESTIMONIALS */}
+        <section className="space-y-6">
+          <h2 className="text-xl font-semibold">Testimonials</h2>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {testimonials.map((t, i) => (
+              <blockquote
+                key={`${t.author}-${i}`}
+                className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4 hover:shadow-md transition"
+              >
+                <p className="text-sm text-muted leading-relaxed">“{t.quote}”</p>
+
+                <footer className="pt-2 text-sm font-medium">
+                  — {t.author}
+                  {t.role && <span className="text-muted font-normal">, {t.role}</span>
+                  }
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </section>
+
+        {/* GITHUB PROJECTS */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold">GitHub Projects</h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {githubProjects.map((p) => (
+              <a
+                key={p.title}
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-lavender/40 transition block"
+              >
+                <h3 className="text-lg font-semibold underline underline-offset-4 decoration-transparent group-hover:decoration-sky transition">
+                  {p.title}
+                </h3>
+
+                <p className="text-sm text-muted">{p.desc}</p>
+
+                <div className="flex flex-wrap gap-2 text-xs">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-1 rounded-full bg-lavender/25 border border-white/30"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <footer className="text-center text-sm text-muted pt-6">
+          © Naomi Haddon ✦ Built with care
+        </footer>
+      </div>
+    </main>
   )
 }
