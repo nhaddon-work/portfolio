@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import Link from 'next/link'
 
 type TechPill = { label: string; pill: string; dot: string }
@@ -12,6 +13,85 @@ type ExperienceItem = {
   location?: string
   highlights: string[]
   tech: TechPill[]
+}
+
+function TestimonialsCarousel({
+  testimonials,
+  intervalMs = 7000,
+}: {
+  testimonials: { quote: string; author: string; role?: string }[]
+  intervalMs?: number
+}) {
+  const [index, setIndex] = React.useState(0)
+  const [paused, setPaused] = React.useState(false)
+
+  // Auto-advance
+  React.useEffect(() => {
+    if (paused || testimonials.length <= 1) return
+
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % testimonials.length)
+    }, intervalMs)
+
+    return () => window.clearInterval(id)
+  }, [paused, intervalMs, testimonials.length])
+
+  const t = testimonials[index]
+
+  return (
+    <div
+      className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4 hover:shadow-md transition relative overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Quote */}
+      <p
+        key={`quote-${index}`}
+        className="text-sm text-muted leading-relaxed animate-[fadeIn_400ms_ease-out]"
+      >
+        “{t.quote}”
+      </p>
+
+      {/* Author */}
+      <footer className="pt-2 text-sm font-medium">
+        — {t.author}
+        {t.role && <span className="text-muted font-normal">, {t.role}</span>}
+      </footer>
+
+      {/* Dots */}
+      {testimonials.length > 1 && (
+        <div className="flex items-center gap-2 pt-2">
+          {testimonials.map((_, i) => (
+            <button
+              key={`dot-${i}`}
+              aria-label={`Show testimonial ${i + 1}`}
+              onClick={() => setIndex(i)}
+              className={`h-2 w-2 rounded-full transition ${
+                i === index ? 'bg-sky' : 'bg-lavender/40 hover:bg-lavender/70'
+              }`}
+            />
+          ))}
+          <span className="ml-2 text-xs text-muted">
+            {paused ? 'Paused' : 'Auto'}
+          </span>
+        </div>
+      )}
+
+      {/* Minimal keyframes (Tailwind arbitrary animation expects keyframes exist; so we include fallback) */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(4px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </div>
+  )
 }
 
 const experience: ExperienceItem[] = [
@@ -223,23 +303,7 @@ export default function DataPage() {
         {/* TESTIMONIALS */}
         <section className="space-y-6">
           <h2 className="text-xl font-semibold">Testimonials</h2>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {testimonials.map((t, i) => (
-              <blockquote
-                key={`${t.author}-${i}`}
-                className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4 hover:shadow-md transition"
-              >
-                <p className="text-sm text-muted leading-relaxed">“{t.quote}”</p>
-
-                <footer className="pt-2 text-sm font-medium">
-                  — {t.author}
-                  {t.role && <span className="text-muted font-normal">, {t.role}</span>
-                  }
-                </footer>
-              </blockquote>
-            ))}
-          </div>
+          <TestimonialsCarousel testimonials={testimonials} intervalMs={7000} />
         </section>
 
         {/* GITHUB PROJECTS */}
