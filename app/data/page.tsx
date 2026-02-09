@@ -191,6 +191,12 @@ const testimonials = [
     author: 'Trent Thomas',
     role: 'Stakeholder / Collaborator',
   },
+  {
+    quote:
+      "Your key strengths lie in your ability toadapt quickly, manage complexity, and deliver results across diverse data domains. You’ve shown great ownership in handling multiple data products simultaneously — from Finance and Content Management to Website and Advertising Performance — while maintaining attention to detail and quality. Your proactive communication and collaboration with cross-functional teams have been instrumental in moving projects forward and resolving dependencies effectively. Additionally, your eagerness to learn and apply AI concepts, such as building the Slack Chatbot on top of Snowflake MCP and a local LLM, demonstrates strong technical curiosity and forward-thinking initiative. Together, these strengths make you a reliable contributor who combines technical execution with business awareness and continuous learning.",
+    author: 'Manish Sharma',
+    role: 'Manager',
+  }
 ]
 
 const githubProjects = [
