@@ -19,26 +19,24 @@ const experience: ExperienceItem[] = [
   {
     company: 'dbt Labs',
     role: 'Data Engineer',
-    start: '2024',
+    start: '',
     end: 'Present',
     location: 'Remote',
     highlights: [
-      'Built scalable ELT pipelines using Python and modern ingestion tools to improve reliability and reduce manual effort.',
-      'Designed modular, reusable data models in dbt to support consistent analytics across teams.',
       'Improved data quality through testing, alerts, and pipeline audits, increasing trust in analytics outputs.',
       'Partnered with stakeholders to translate business questions into durable, analytics-ready datasets.',
     ],
     tech: [
       { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
-      { label: 'dbt', pill: 'bg-peach/35', dot: 'bg-peach' },
+      { label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
       { label: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
     ],
   },
   {
     company: 'PitchBook',
     role: 'Data Engineer',
-    start: '2024',
-    end: '2024',
+    start: '2025',
+    end: '2024 ~ 2 years',
     location: 'Seattle, WA',
     highlights: [
       'Built scalable ETL/ELT pipelines with Python, Meltano, and dltHub, eliminating manual workflows.',
@@ -91,6 +89,16 @@ const experience: ExperienceItem[] = [
       { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
       { label: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
     ],
+  },
+]
+
+const testimonials = [
+  {
+    title: "Focus on Focus",
+    quote:
+      "Naomi has been instrumental in pushing our project Sidetrade data forward, overcoming a series of tough setbacks and helping navigate complex cross-functional and cross-organizational requirements. Her work to secure access to Sidetrade and build out the necessary data tables was no small feat, especially given the intricate logic involved. She consistently sought to clarify requirements and iterated quickly toward the right solution. The quality of her work has been excellent, and collaborating with her has been a true highlight. Huge thanks to Naomi for her persistence, precision, and partnership!",
+    author: "Trent Thomas",
+    role: "Stakeholder / Collaborator", // optional
   },
 ]
 
@@ -167,11 +175,45 @@ export default function DataPage() {
               ))}
             </div>
           </section>
+          
+          {/* TESTIMONIALS */}
+          <section className="space-y-6">
+            <h2 className="text-xl font-semibold">What People Say</h2>
+          
+            <div className="grid gap-6 md:grid-cols-2">
+              {testimonials.map((t, i) => (
+                <blockquote
+                  key={i}
+                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-4 hover:shadow-md transition"
+                >
+                  {/* Quote title */}
+                  <h3 className="text-lg font-semibold text-sky">
+                    {t.title}
+                  </h3>
+          
+                  {/* Quote text */}
+                  <p className="text-sm text-muted leading-relaxed">
+                    “{t.quote}”
+                  </p>
+          
+                  {/* Author */}
+                  <footer className="pt-2 text-sm font-medium">
+                    — {t.author}
+                    {t.role && (
+                      <span className="text-muted font-normal">
+                        , {t.role}
+                      </span>
+                    )}
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+          </section>
 
           {/* GITHUB PROJECTS */}
           <section className="space-y-4">
             <h2 className="text-xl font-semibold">GitHub Projects</h2>
-
+          
             <div className="grid md:grid-cols-2 gap-6">
               {githubProjects.map((p) => (
                 <a
@@ -179,16 +221,15 @@ export default function DataPage() {
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-lavender/40 transition block"
+                  className="group bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-3 hover:shadow-md hover:border-lavender/40 transition block"
                 >
-                  <h3 className="text-lg font-semibold">{p.title}</h3>
+                  {/* Title acts as the visible link */}
+                  <h3 className="text-lg font-semibold underline underline-offset-4 decoration-transparent group-hover:decoration-sky transition">
+                    {p.title}
+                  </h3>
+          
                   <p className="text-sm text-muted">{p.desc}</p>
-
-                  {/* Visible link */}
-                  <div className="text-xs text-sky underline break-all">
-                    {p.link}
-                  </div>
-
+          
                   <div className="flex flex-wrap gap-2 text-xs">
                     {p.tags.map((t) => (
                       <span
