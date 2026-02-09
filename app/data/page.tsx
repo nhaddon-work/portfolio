@@ -111,13 +111,13 @@ const githubProjects = [
 
 export default function DataPage() {
   return (
-
+    <>
       <main className="relative min-h-screen bg-base text-text px-6 py-16">
         <div className="max-w-5xl mx-auto space-y-10">
           <Link href="/" className="text-sm text-muted hover:underline">
             ← Back home
           </Link>
-
+        
           <header className="space-y-2">
             <h1 className="text-4xl font-serif tracking-tight">Data Engineering</h1>
             <p className="text-muted max-w-3xl">
