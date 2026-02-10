@@ -58,25 +58,6 @@ function TestimonialsCarousel({
         {t.role && <span className="text-muted font-normal">, {t.role}</span>}
       </footer>
 
-      {/* Dots */}
-      {testimonials.length > 1 && (
-        <div className="flex items-center gap-2 pt-2">
-          {testimonials.map((_, i) => (
-            <button
-              key={`dot-${i}`}
-              aria-label={`Show testimonial ${i + 1}`}
-              onClick={() => setIndex(i)}
-              className={`h-2 w-2 rounded-full transition ${
-                i === index ? 'bg-sky' : 'bg-lavender/40 hover:bg-lavender/70'
-              }`}
-            />
-          ))}
-          <span className="ml-2 text-xs text-muted">
-            {paused ? 'Paused' : 'Auto'}
-          </span>
-        </div>
-      )}
-
       {/* Minimal keyframes (Tailwind arbitrary animation expects keyframes exist; so we include fallback) */}
       <style jsx>{`
         @keyframes fadeIn {
@@ -114,11 +95,11 @@ const experience: ExperienceItem[] = [
     end: '2025 ~ 2 years',
     location: 'Seattle, WA',
     highlights: [
-      'Built scalable ETL/ELT pipelines with Python, Meltano, and dltHub, eliminating manual workflows.',
-      'Designed modular data models with dbt and SQLMesh to improve reuse and consistency.',
-      'Managed Snowflake resources and roles via Terraform, standardizing infrastructure-as-code.',
-      'Deployed CI/CD pipelines using Docker, GitLab, Airflow, and DataHub for reliable releases.',
-      'Redesigned Snowflake database architecture to enable intuitive self-serve analytics.',
+      'Built scalable 10+ ETL/ELT pipelines with Python/Meltano/dltHub, improving data reliability & eliminating manual tasks.',
+      'Designed 5+ modular data models with DBT and SQLMesh, enhancing consistency and reusability across team.',
+      'Managed Snowflake resource and role management via Terraform, reducing errors and streamlining IaC workflows.',
+      'Deployed robust CI/CD pipelines using Docker, GitLab, Airflow, and DataHub to ensure fast, reliable releases.',
+      'Redesigned database architecture in Snowflake to enable intuitive, efficient analytics and faster self-serve reporting.',
     ],
     tech: [
       { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
@@ -136,10 +117,10 @@ const experience: ExperienceItem[] = [
     end: '2023 ~ 2.75 years',
     location: 'Seattle, WA',
     highlights: [
-      'Built and maintained 20+ ETL pipelines to transform large datasets for analytics use cases.',
-      'Created standardized metric tables in SQL to reduce redundancy and metric churn.',
-      'Designed dashboards in QuickSight and Tableau to track KPIs across multiple orgs.',
-      'Conducted A/B tests to inform senior leadership decisions and product launches.',
+      'Built 20+ ETLs to clean, manipulate and aggregate big data sets in support of various data visualization projects.',
+      'Created standardized metric tables in SQL to support both internal and external teams to reduce code redundancy and churn.',
+      'Created 10+ dashboards using QuickSight/Tableau to help stakeholders visualize critical weekly/monthly/yearly KPIs.',
+      'Conducted A/B tests to measure product efficiency to keep senior leadership informed and successful product launch.',
     ],
     tech: [
       { label: 'SQL', pill: 'bg-sky/30', dot: 'bg-sky' },
@@ -156,8 +137,8 @@ const experience: ExperienceItem[] = [
     location: 'Seattle, WA',
     highlights: [
       'Developed R Shiny applications to visualize real-time vehicle usage for operational insights.',
-      'Built ETL pipelines using Python and AWS services to support analytics reporting.',
-      'Reduced execution time by 30% through testing and refactoring.',
+      'Built ETL pipelines with Python & AWS services such as S3, Athena and Lambda to support backend of data reporting.',
+      'Performed unit testing and reduced redundancy in the current code base to increase execution speed by 30%.',
     ],
     tech: [
       { label: 'R', pill: 'bg-lavender/30', dot: 'bg-lavender' },
@@ -168,10 +149,9 @@ const experience: ExperienceItem[] = [
 ]
 
 const summaryOfQualifications = [
-  'Data-driven problem solver with 3 years of SQL & Python programming experience and aptitude for data visualization',
-  'Analytics professional with aptitude for analytical problem solving and real-word applications of statistical theories',
-  'Collaborative team player with 3-year of customer service experience, strong communication and interpersonal skills',
-  'Proficient: SQL, Python, Tableau, ETL, R, Client/Server Side Development; Intermediate: Jupyter notebook, Git',
+  'Data & AI-focused problem solver with 5 years of experience in SQL and Python, building scalable data pipelines, analytics workflows, and AI-enabled solutions, with a strong foundation in cloud and data infrastructure',
+  'Analytics professional skilled in translating real-world business problems into production-ready data models, statistical analyses, and machine-learning workflows deployed on modern data platforms',
+  'Technical skills: SQL, Python, Git; ETL/ELT pipelines, data warehousing, workflow orchestration; Terraform, Docker, cloud infrastructure; Jupyter environments, Tableau; exposure to CI/CD practices and AI/ML platforms.',
 ]
 
 const education = {
@@ -193,7 +173,7 @@ const testimonials = [
   },
   {
     quote:
-      "Your key strengths lie in your ability toadapt quickly, manage complexity, and deliver results across diverse data domains. You’ve shown great ownership in handling multiple data products simultaneously — from Finance and Content Management to Website and Advertising Performance — while maintaining attention to detail and quality. Your proactive communication and collaboration with cross-functional teams have been instrumental in moving projects forward and resolving dependencies effectively. Additionally, your eagerness to learn and apply AI concepts, such as building the Slack Chatbot on top of Snowflake MCP and a local LLM, demonstrates strong technical curiosity and forward-thinking initiative. Together, these strengths make you a reliable contributor who combines technical execution with business awareness and continuous learning.",
+      "Naomi’s key strengths lie in her ability to adapt quickly, manage complexity, and deliver results across diverse data domains. She has shown strong ownership in handling multiple data products simultaneously — spanning Finance, Content Management, Website, and Advertising Performance — while maintaining a high standard of detail and quality. Her proactive communication and collaboration with cross-functional teams have been instrumental in advancing projects and resolving dependencies effectively. Additionally, Naomi’s eagerness to learn and apply AI concepts, such as building a Slack chatbot on top of Snowflake MCP and a local LLM, demonstrates strong technical curiosity and forward-thinking initiative. Together, these strengths make Naomi a reliable contributor who combines solid technical execution with business awareness and a commitment to continuous learning.",
     author: 'Manish Sharma',
     role: 'Manager',
   }
@@ -217,13 +197,14 @@ const githubProjects = [
 export default function DataPage() {
   return (
     <main className="relative min-h-screen bg-base text-text px-6 py-16">
-      <div className="max-w-5xl mx-auto space-y-10">
+      <div className="max-w-5xl mx-auto space-y-5">
         <Link href="/" className="text-sm text-muted hover:underline">
           ← Back home
         </Link>
 
         <header className="space-y-2">
-          <h1 className="text-4xl font-serif tracking-tight">Data Engineering</h1>
+          <h1 className="text-5xl font-serif tracking-tight">𝐍𝐚𝐨𝐦𝐢 (𝐘𝐮) 𝐇𝐚𝐝𝐝𝐨𝐧 (𝐃𝐮)</h1>
+          <h2 className="text-3xl font-serif tracking-tight">Data Engineering</h2>
         </header>
 
         {/* SUMMARY */}
@@ -306,9 +287,9 @@ export default function DataPage() {
           </div>
         </section>
 
-        {/* TESTIMONIALS */}
+        {/* Performance Highlights */}
         <section className="space-y-6">
-          <h2 className="text-xl font-semibold">Testimonials</h2>
+          <h2 className="text-xl font-semibold">Performance Highlights</h2>
           <TestimonialsCarousel testimonials={testimonials} intervalMs={7000} />
         </section>
 
