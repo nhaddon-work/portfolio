@@ -3,6 +3,9 @@
 import React from 'react'
 import Link from 'next/link'
 
+import FollowRequest from '../components/FollowRequest'
+
+
 type TechPill = { label: string; pill: string; dot: string }
 
 type ExperienceItem = {
@@ -206,6 +209,11 @@ export default function DataPage() {
           <h1 className="text-5xl font-serif tracking-tight">𝐍𝐚𝐨𝐦𝐢 (𝐘𝐮) 𝐇𝐚𝐝𝐝𝐨𝐧 (𝐃𝐮)</h1>
           <h2 className="text-3xl font-serif tracking-tight">Data Engineering</h2>
         </header>
+
+        {/* FOLLOW */}
+        <section className="space-y-4">
+          <FollowRequest verifiedCount={1} />
+        </section>
 
         {/* SUMMARY */}
         <section className="space-y-4">
