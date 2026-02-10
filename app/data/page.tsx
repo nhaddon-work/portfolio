@@ -106,8 +106,8 @@ const experience: ExperienceItem[] = [
       { label: 'dbt', pill: 'bg-peach/35', dot: 'bg-peach' },
       { label: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
       { label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
-      { label: 'Airflow', pill: 'bg-butter/45', dot: 'bg-butter' },
-      { label: 'Docker', pill: 'bg-peach/35', dot: 'bg-peach' },
+      { label: 'Airflow', pill: 'bg-sky/30', dot: 'bg-sky' },
+      { label: 'Docker', pill: 'bg-mint/35', dot: 'bg-mint' },
     ],
   },
   {
@@ -124,8 +124,8 @@ const experience: ExperienceItem[] = [
     ],
     tech: [
       { label: 'SQL', pill: 'bg-sky/30', dot: 'bg-sky' },
-      { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
-      { label: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
+      { label: 'Python', pill: 'bg-butter/45', dot: 'bg-butter' },
+      { label: 'AWS', pill: 'bg-lavender/30', dot: 'bg-lavender' },
       { label: 'Tableau', pill: 'bg-mint/35', dot: 'bg-mint' },
     ],
   },
@@ -143,7 +143,7 @@ const experience: ExperienceItem[] = [
     tech: [
       { label: 'R', pill: 'bg-lavender/30', dot: 'bg-lavender' },
       { label: 'Python', pill: 'bg-mint/35', dot: 'bg-mint' },
-      { label: 'AWS', pill: 'bg-sky/30', dot: 'bg-sky' },
+      { label: 'AWS', pill: 'bg-peach/35', dot: 'bg-peach' },
     ],
   },
 ]
