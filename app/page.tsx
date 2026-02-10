@@ -65,7 +65,7 @@ export default function Home() {
 
             {/* Tabs */}
             <div className="grid md:grid-cols-3 gap-5 pt-3">
-              <TabButton href="/data" label="Data Engineering & Web Dev" subtitle="Work, skills, projects" accentDot="bg-mint" />
+              <TabButton href="/data" label="Data Engineering" subtitle="Work, skills, projects" accentDot="bg-mint" />
               <TabButton href="/adoraboard" label="Adoraboard" subtitle="My keyboard brand" accentDot="bg-peach" />
               <TabButton href="/hobbies" label="Life & Hobbies" subtitle="Singing, guitar, hiking" accentDot="bg-butter" />
             </div>
