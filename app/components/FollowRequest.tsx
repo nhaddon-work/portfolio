@@ -46,7 +46,7 @@ export default function FollowRequest({
               <span className="text-red-500 text-sm leading-none">♥</span>
             </span>
             <div className="leading-tight">
-              <div className="text-[10px] text-muted -mb-0.5">verified followers</div>
+              <div className="text-[10px] text-muted -mb-0.5">Verified Followers</div>
               <div className="text-xs font-semibold">{verifiedCount}</div>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function FollowRequest({
       >
         <div className="px-3 pb-3 space-y-4">
           <p className="text-sm text-muted">
-            Share your name + work email, and answer a small “only us” prompt so I can
+            Share your name + work email/LinkedIn/portfolio, and answer a small “only us” prompt so I can
             recognize you. Once verified, I’ll add you to my subscriber list and notify you.
           </p>
 
@@ -85,7 +85,7 @@ export default function FollowRequest({
                 name="email"
                 type="email"
                 required
-                placeholder="Work email"
+                placeholder="Work email or LinkedIn or Your portfolio"
                 className="w-full rounded-xl border border-lavender/20 bg-white/80 px-4 py-2 text-sm outline-none focus:ring-2"
               />
             </div>
