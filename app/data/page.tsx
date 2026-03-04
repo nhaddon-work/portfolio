@@ -86,10 +86,11 @@ const experience: ExperienceItem[] = [
     end: 'Present ~ Just Started!',
     location: 'Remote',
     highlights: [
-      'Own and drive data observability, building freshness, volume, schema, and quality checks to surface issues early across pipelines.',
-      'Partner with senior engineers on a new Iceberg-based data lake, supporting table setup, pipeline integration, and platform operations.',
+      'Own and drive data observability, building freshness and quality checks in Datadog to surface issues early across platforms and pipelines.'
     ],
-    tech: [{ label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' }],
+    tech: [{ label: 'Terraform', pill: 'bg-butter/45', dot: 'bg-butter' },
+           { label: 'Snowflake', pill: 'bg-lavender/30', dot: 'bg-lavender' },
+    ],
   },
   {
     company: 'PitchBook',
@@ -212,7 +213,7 @@ export default function DataPage() {
 
         {/* FOLLOW */}
         <section className="space-y-4">
-          <FollowRequest verifiedCount={1} />
+          <FollowRequest verifiedCount={2} />
         </section>
 
         {/* SUMMARY */}
