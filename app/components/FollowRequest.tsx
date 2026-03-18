@@ -38,7 +38,7 @@ export default function FollowRequest({
         <div className="flex items-center gap-3">
           {/* Heart verified counter */}
           <div
-            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-white/40 bg-white/60"
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 border border-lavender/20 bg-white/70"
             title="Count of verified followers"
             aria-label={`Count of verified followers: ${verifiedCount}`}
           >

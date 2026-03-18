@@ -73,13 +73,13 @@ export default function Carousel({
         <div className="flex gap-2">
           <button
             onClick={prev}
-            className="rounded-full border border-white/50 bg-white/60 px-2 py-1 text-xs hover:bg-white/80 transition"
+            className="rounded-full border border-lavender/20 bg-white/70 px-2 py-1 text-xs hover:bg-white/80 transition"
           >
             ‹
           </button>
           <button
             onClick={next}
-            className="rounded-full border border-white/50 bg-white/60 px-2 py-1 text-xs hover:bg-white/80 transition"
+            className="rounded-full border border-lavender/20 bg-white/70 px-2 py-1 text-xs hover:bg-white/80 transition"
           >
             ›
           </button>
@@ -119,7 +119,7 @@ export default function Carousel({
             onClick={() => setI(idx)}
             className={
               'h-1.5 w-1.5 rounded-full border border-lavender/30 ' +
-              (idx === safeIndex ? 'bg-lavender/40' : 'bg-white/50')
+              (idx === safeIndex ? 'bg-lavender/40' : 'bg-lavender/10')
             }
           />
         ))}

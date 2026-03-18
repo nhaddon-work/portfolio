@@ -19,7 +19,7 @@ export default function TabButton({
       href={href}
       className="
         group block w-full text-left rounded-2xl px-4 py-3 border transition
-        bg-white/55 border-white/40 hover:bg-white/70 hover:shadow-sm
+        bg-white/70 border-lavender/20 hover:bg-white/70 hover:shadow-sm
         focus:outline-none focus-visible:ring-2 focus-visible:ring-lavender/60
       "
     >

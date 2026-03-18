@@ -73,7 +73,7 @@ const PHOTOS_BY_COUNTRY: Record<string, CarouselItem[]> = {
     { src: '/china-02.jpg' },
   ],
   'United States of America': [
-    { src: '/US-01.png' },
+    // { src: '/US-01.png' },
     { src: '/US-02.jpg' },
   ],
   Canada: [{ src: '/CA-01.jpg' }],

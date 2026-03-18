@@ -83,7 +83,7 @@ const experience: ExperienceItem[] = [
     company: 'dbt Labs',
     role: 'Data Engineer',
     start: '2025',
-    end: 'Present ~ Just Started!',
+    end: 'March 2026',
     location: 'Remote',
     highlights: [
       'Own and drive data observability, building freshness and quality checks in Datadog to surface issues early across platforms and pipelines.'
