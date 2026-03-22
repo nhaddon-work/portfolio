@@ -207,8 +207,9 @@ export default function DataPage() {
         </Link>
 
         <header className="space-y-2">
-          <h1 className="text-5xl font-serif tracking-tight">𝐍𝐚𝐨𝐦𝐢 (𝐘𝐮) 𝐇𝐚𝐝𝐝𝐨𝐧 (𝐃𝐮)</h1>
-          <h2 className="text-3xl font-serif tracking-tight">Data Engineering</h2>
+          <h1 className="text-5xl font-serif tracking-tight">𝐍𝐚𝐨𝐦𝐢 𝐇𝐚𝐝𝐝𝐨𝐧</h1>
+          <h2 className="text-3xl font-serif tracking-tight">Data Engineer</h2>
+          <p className="text-xs font-serif tracking-tight text-gray-400/70 italic"> My legal name is hidden for online privacy concerns </p>
         </header>
 
         {/* FOLLOW */}

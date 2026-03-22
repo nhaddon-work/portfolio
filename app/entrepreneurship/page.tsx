@@ -35,9 +35,10 @@ export default function AdoraboardPage() {
           {[
             {
               title: 'Adoraboard',
+              link: 'https://www.instagram.com/adoraboard_/',
               desc: `Adoraboard is my first successful product brand — a line of keyboards that combines functionality, aesthetics, and personality.  
 
-              What started as a simple solution for myself as a data engineer (everyone had their own setups, I didn’t) quickly turned into a brand with huge traction and loyal fans.  
+              What started as a simple solution for myself as a data engineer (everyone had their own setups, I didn’t) turned into a brand with huge traction and loyal fans.  
 
               The best part? Minimal investment, massive payoff. Each set is a unique design from talented artists, sourced from China and assembled in the US. A small idea that scaled, a brand that sells itself through quality and cute vibe.`
             },
@@ -62,7 +63,15 @@ export default function AdoraboardPage() {
               key={c.title}
               className="bg-white/70 border border-lavender/20 rounded-2xl p-6 space-y-2"
             >
-              <h2 className="text-lg font-semibold">{c.title}</h2>
+              <h2 className="text-lg font-semibold">
+                {c.link ? (
+                  <a href={c.link} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4 decoration-lavender">
+                    {c.title} ↗
+                  </a>
+                ) : (
+                  c.title
+                )}
+              </h2>
               <p className="text-sm text-muted whitespace-pre-line">{c.desc}</p>
             </div>
           ))}

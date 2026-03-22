@@ -49,9 +49,9 @@ export default function Home() {
           <section className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="space-y-1">
-                <h1 className="text-5xl font-serif tracking-tight">𝐍𝐚𝐨𝐦𝐢 (𝐘𝐮) 𝐇𝐚𝐝𝐝𝐨𝐧 (𝐃𝐮)</h1>
+                <h1 className="text-5xl font-serif tracking-tight">𝐍𝐚𝐨𝐦𝐢 𝐇𝐚𝐝𝐝𝐨𝐧</h1>
                 <p className="max-w-3xl text-sm text-muted">
-                  𝐈𝐍𝐓𝐉 ｜ ≈ 𝐚𝐪𝐮𝐚𝐫𝐢𝐮𝐬 · ☽ 𝐥𝐢𝐛𝐫𝐚 · ⌒ 𝐥𝐢𝐛𝐫𝐚 ｜ 🇨🇳🇺🇸 ｜ 𝐈𝐧𝐬𝐭𝐚 ✦ 𝐍𝐚𝐨𝐦𝐢𝐰𝐡𝐨𝐦𝐞
+                  𝐈𝐍𝐓𝐉 ｜ ≈ 𝐚𝐪𝐮𝐚𝐫𝐢𝐮𝐬 · ☽ 𝐥𝐢𝐛𝐫𝐚 · ⌒ 𝐥𝐢𝐛𝐫𝐚 ｜ 🇨🇳🇺🇸 
                 </p>
               </div>
 

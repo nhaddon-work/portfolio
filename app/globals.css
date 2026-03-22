@@ -17,25 +17,26 @@
   --butter: #f7e6a2;
 }
 
-.dark {
-  --background: #1e1b29;
-  --foreground: #f4f1fb;
-  --muted: #c9c2d8;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1e1b29;
+    --foreground: #f4f1fb;
+    --muted: #c9c2d8;
 
-  /* soften pastel colors for dark mode */
-  --lavender: #9f8ac6;
-  --peach: #e7a997;
-  --mint: #9fd3bd;
-  --sky: #a9c8f2;
-  --butter: #e7d78b;
-}
+    --lavender: #9f8ac6;
+    --peach: #e7a997;
+    --mint: #9fd3bd;
+    --sky: #a9c8f2;
+    --butter: #e7d78b;
+  }
 
-.dark .bg-white\/70 {
-  background: rgba(35, 32, 45, 0.75);
-}
+  .bg-white\/70 {
+    background: rgba(35, 32, 45, 0.75);
+  }
 
-.dark .bg-white\/50 {
-  background: rgba(35, 32, 45, 0.6);
+  .bg-white\/50 {
+    background: rgba(35, 32, 45, 0.6);
+  }
 }
 
 /* =========================
